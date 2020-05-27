@@ -1,7 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
 
-const PORT = 8000;
 const app = express();
 app.use(morgan('dev'));
 
@@ -14,7 +13,7 @@ app.get('/apps', (req, res) => {
     if (!['Rating', 'App'].includes(sort)){
       return res
         .status(400)
-        .send('Sort must be one of rating or app');
+        .send('Sort must be one of "Rating" or "App"');
     }
   }
   if (genres) {
@@ -51,6 +50,4 @@ app.get('/apps', (req, res) => {
   res.json(results);
 })
 
-app.listen(PORT, () => {
-  console.log(`Server started on PORT ${PORT}`);
-})
+module.exports = app;
